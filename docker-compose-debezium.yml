@@ -8,8 +8,9 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
 
-# Zookeeper, single node
+  # Zookeeper, single node
   zookeeper:
     image: wurstmeister/zookeeper:latest
     environment:
@@ -20,7 +21,7 @@ services:
       - 2888:2888
       - 3888:3888
 
- # kafka multi node     
+  # kafka multi node
   kafka1:
     image: wurstmeister/kafka:latest
     restart: "no"
@@ -53,7 +54,7 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       #https://github.com/wurstmeister/kafka-docker/issues/553
 
-#kafdrop for topic/msg visualization
+  #kafdrop for topic/msg visualization
   kafdrop:
     image: obsidiandynamics/kafdrop
     restart: "no"
@@ -83,7 +84,7 @@ services:
       - kafka1
       - kafka2
       - zookeeper
-      - postgres  
+      - postgres
 
 # 1. kafka & zookeeper --> docker
 # 2. kafdrop --> docker

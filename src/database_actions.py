@@ -11,7 +11,7 @@ conn_params = {
 }
 
 
-def test_insert_data():
+def test_insert_data_inventory():
     conn = psycopg2.connect(**conn_params)
     cursor = conn.cursor()
     random_str = secrets.token_hex(3)
