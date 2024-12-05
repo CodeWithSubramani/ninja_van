@@ -4,6 +4,7 @@ start:
 	cd airflow/docker && \
 	docker compose up -d --build && \
 	docker exec -it docker-airflow-webserver-1 sh -c "pip install pyarrow"
+	python3 src/add_debezium_connector.py && \
 	python3 src/inventory_consumer.py
 
 
