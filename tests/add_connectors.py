@@ -1,7 +1,7 @@
 import requests
 
 
-def test_register_kafka_connect():
+def test_register_debezium_postgres_connect():
     url = "http://localhost:8083/connectors"
     body = {
         "name": "inventory-connector",
