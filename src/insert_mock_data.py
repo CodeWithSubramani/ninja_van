@@ -10,8 +10,7 @@ conn_params = {
     "port": "5433"
 }
 
-
-def test_insert_data_inventory():
+if __name__ == "__main__":
     conn = psycopg2.connect(**conn_params)
     cursor = conn.cursor()
     random_str = secrets.token_hex(3)
