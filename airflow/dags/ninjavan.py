@@ -1,14 +1,11 @@
 from datetime import datetime
 from datetime import timedelta
+
 from airflow.operators.dummy_operator import DummyOperator
-from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 
-
-def say_hello():
-    print("Hello Subramani")
-
-
+from airflow import DAG
+from helper_functions import test_process_events
 
 now = datetime.now()
 default_args = {
@@ -25,16 +22,15 @@ dag = DAG(
     dag_id="ninja_van_micro_batch",
     description="Example of micro batching",
     default_args=default_args,
-    schedule_interval=timedelta(1)
+    schedule_interval="* * * * *",
+    catchup=False
 )
-
 
 get_data = PythonOperator(
     task_id='get_data',
-    python_callable=say_hello,
+    python_callable=test_process_events,
     dag=dag)
 
 start = DummyOperator(task_id="start", dag=dag)
-
 
 start >> get_data

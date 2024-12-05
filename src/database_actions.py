@@ -22,3 +22,5 @@ def test_insert_data():
     """
     cursor.execute(insert_query)
     conn.commit()
+    cursor.close()
+    conn.close()
